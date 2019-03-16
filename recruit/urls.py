@@ -25,6 +25,7 @@ from candidates import views as candidatesViews
 from recruiters import views as recruitersViews
 from dashboards import views as dashboardViews
 from django.contrib.auth.models import User
+from django.views.static import serve
 
 urlpatterns = [
     url(r'^$', dashboardViews.dashboards, name='dashboards'),
@@ -33,12 +34,12 @@ urlpatterns = [
     url(r'^jobs/$', jobsViews.view_jobs, name='jobs'),
     url(r'^jobs/(?P<job_id>\d+)/$', jobsViews.view_job_details, name='job_details'),
     url(r'^candidates/apply/$', candidatesViews.apply, name='candidate_apply'),
-    url(r'^candidates/apply/success/$', candidatesViews.apply_success, name='candidate_apply_success'),    
+    url(r'^candidates/apply/success/$', candidatesViews.apply_success, name='candidate_apply_success'),
     url(r'^recruiters/', recruitersViews.view_recruiters, name='recruiters'),
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': settings.DEBUG}), 
     url(r'^available/(?P<bu_id>\d+)/$', interviewsViews.available, name='available'),
     url(r'^availability/(?P<bu_id>\d+)/$', interviewsViews.availability, name='availability'),
-    url(r'^interviews/', interviewsViews.interview_requests, name='interviews')
+    url(r'^interviews/', interviewsViews.interview_requests, name='interviews'),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, 'show_indexes': settings.DEBUG}),
 ]
 
 if settings.DEBUG:

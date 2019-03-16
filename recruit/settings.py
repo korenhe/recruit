@@ -56,13 +56,12 @@ INSTALLED_APPS = [
     'dashboards',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -206,8 +205,7 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 # Sendgrid Email API Configuration
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
-SENDGRID_USER = os.environ['SENDGRID_USER']
-SENDGRID_PASSWORD = os.environ['SENDGRID_PASSWORD']
+SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 
 from django.contrib import messages
 MESSAGE_TAGS = {messages.DEBUG: 'debug',
